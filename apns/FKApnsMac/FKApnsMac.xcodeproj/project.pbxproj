@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00AD9BA721F1A27D00A8B877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BA621F1A27D00A8B877 /* AppDelegate.m */; };
+		00AD9BA921F1A27F00A8B877 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BA821F1A27F00A8B877 /* Assets.xcassets */; };
+		00AD9BAC21F1A27F00A8B877 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BAA21F1A27F00A8B877 /* MainMenu.xib */; };
+		00AD9BAF21F1A27F00A8B877 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BAE21F1A27F00A8B877 /* main.m */; };
+		00AD9BB921F1A33800A8B877 /* FKMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BB721F1A33800A8B877 /* FKMainWindowController.m */; };
+		00AD9BBA21F1A33800A8B877 /* FKMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BB821F1A33800A8B877 /* FKMainWindowController.xib */; };
+		00AD9BBD21F1C08000A8B877 /* APNSDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BBC21F1C08000A8B877 /* APNSDocument.m */; };
+		00AD9BC021F1C81C00A8B877 /* APNSSecIdentityType.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BBF21F1C81C00A8B877 /* APNSSecIdentityType.m */; };
+		00AD9BC321F1D6EA00A8B877 /* APNSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BC221F1D6EA00A8B877 /* APNSItem.m */; };
+		00AD9BC621F1DF3D00A8B877 /* FKAPNSHttp2_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BC521F1DF3D00A8B877 /* FKAPNSHttp2_0.m */; };
+		00AD9BCA21F56E5E00A8B877 /* HB5ZXX7MYQ.p8 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BC821F56E5E00A8B877 /* HB5ZXX7MYQ.p8 */; };
+		00AD9BCB21F56E5E00A8B877 /* test_private.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BC921F56E5E00A8B877 /* test_private.txt */; };
+		1D22A463B17F7867085ADE7A /* Pods_FKApnsMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EEEF16792DA0758EB4EFE68 /* Pods_FKApnsMac.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00AD9BA221F1A27D00A8B877 /* FKApnsMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FKApnsMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00AD9BA521F1A27D00A8B877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		00AD9BA621F1A27D00A8B877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		00AD9BA821F1A27F00A8B877 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00AD9BAB21F1A27F00A8B877 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		00AD9BAD21F1A27F00A8B877 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00AD9BAE21F1A27F00A8B877 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00AD9BB021F1A27F00A8B877 /* FKApnsMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FKApnsMac.entitlements; sourceTree = "<group>"; };
+		00AD9BB621F1A33800A8B877 /* FKMainWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FKMainWindowController.h; sourceTree = "<group>"; };
+		00AD9BB721F1A33800A8B877 /* FKMainWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FKMainWindowController.m; sourceTree = "<group>"; };
+		00AD9BB821F1A33800A8B877 /* FKMainWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FKMainWindowController.xib; sourceTree = "<group>"; };
+		00AD9BBB21F1C08000A8B877 /* APNSDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APNSDocument.h; sourceTree = "<group>"; };
+		00AD9BBC21F1C08000A8B877 /* APNSDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APNSDocument.m; sourceTree = "<group>"; };
+		00AD9BBE21F1C81C00A8B877 /* APNSSecIdentityType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APNSSecIdentityType.h; sourceTree = "<group>"; };
+		00AD9BBF21F1C81C00A8B877 /* APNSSecIdentityType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APNSSecIdentityType.m; sourceTree = "<group>"; };
+		00AD9BC121F1D6EA00A8B877 /* APNSItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APNSItem.h; sourceTree = "<group>"; };
+		00AD9BC221F1D6EA00A8B877 /* APNSItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APNSItem.m; sourceTree = "<group>"; };
+		00AD9BC421F1DF3D00A8B877 /* FKAPNSHttp2_0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FKAPNSHttp2_0.h; sourceTree = "<group>"; };
+		00AD9BC521F1DF3D00A8B877 /* FKAPNSHttp2_0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FKAPNSHttp2_0.m; sourceTree = "<group>"; };
+		00AD9BC821F56E5E00A8B877 /* HB5ZXX7MYQ.p8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HB5ZXX7MYQ.p8; sourceTree = "<group>"; };
+		00AD9BC921F56E5E00A8B877 /* test_private.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_private.txt; sourceTree = "<group>"; };
+		0F68D1EF5529F027146EDA55 /* Pods-FKApnsMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FKApnsMac.debug.xcconfig"; path = "Target Support Files/Pods-FKApnsMac/Pods-FKApnsMac.debug.xcconfig"; sourceTree = "<group>"; };
+		7EEEF16792DA0758EB4EFE68 /* Pods_FKApnsMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FKApnsMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4229EFCBB09A770C606A538 /* Pods-FKApnsMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FKApnsMac.release.xcconfig"; path = "Target Support Files/Pods-FKApnsMac/Pods-FKApnsMac.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00AD9B9F21F1A27D00A8B877 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D22A463B17F7867085ADE7A /* Pods_FKApnsMac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00AD9B9921F1A27D00A8B877 = {
+			isa = PBXGroup;
+			children = (
+				00AD9BA421F1A27D00A8B877 /* FKApnsMac */,
+				00AD9BA321F1A27D00A8B877 /* Products */,
+				1B8CBF870065F60800350289 /* Pods */,
+				E5F8AAF1AB9AB998C45EC1DD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		00AD9BA321F1A27D00A8B877 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00AD9BA221F1A27D00A8B877 /* FKApnsMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00AD9BA421F1A27D00A8B877 /* FKApnsMac */ = {
+			isa = PBXGroup;
+			children = (
+				00AD9C1321F5C10D00A8B877 /* jwtswift */,
+				00AD9BC821F56E5E00A8B877 /* HB5ZXX7MYQ.p8 */,
+				00AD9BC921F56E5E00A8B877 /* test_private.txt */,
+				00AD9BA521F1A27D00A8B877 /* AppDelegate.h */,
+				00AD9BA621F1A27D00A8B877 /* AppDelegate.m */,
+				00AD9BC121F1D6EA00A8B877 /* APNSItem.h */,
+				00AD9BC221F1D6EA00A8B877 /* APNSItem.m */,
+				00AD9BBB21F1C08000A8B877 /* APNSDocument.h */,
+				00AD9BBC21F1C08000A8B877 /* APNSDocument.m */,
+				00AD9BC421F1DF3D00A8B877 /* FKAPNSHttp2_0.h */,
+				00AD9BC521F1DF3D00A8B877 /* FKAPNSHttp2_0.m */,
+				00AD9BBE21F1C81C00A8B877 /* APNSSecIdentityType.h */,
+				00AD9BBF21F1C81C00A8B877 /* APNSSecIdentityType.m */,
+				00AD9BB621F1A33800A8B877 /* FKMainWindowController.h */,
+				00AD9BB721F1A33800A8B877 /* FKMainWindowController.m */,
+				00AD9BB821F1A33800A8B877 /* FKMainWindowController.xib */,
+				00AD9BA821F1A27F00A8B877 /* Assets.xcassets */,
+				00AD9BAA21F1A27F00A8B877 /* MainMenu.xib */,
+				00AD9BAD21F1A27F00A8B877 /* Info.plist */,
+				00AD9BAE21F1A27F00A8B877 /* main.m */,
+				00AD9BB021F1A27F00A8B877 /* FKApnsMac.entitlements */,
+			);
+			path = FKApnsMac;
+			sourceTree = "<group>";
+		};
+		00AD9C1321F5C10D00A8B877 /* jwtswift */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = jwtswift;
+			sourceTree = "<group>";
+		};
+		1B8CBF870065F60800350289 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F68D1EF5529F027146EDA55 /* Pods-FKApnsMac.debug.xcconfig */,
+				F4229EFCBB09A770C606A538 /* Pods-FKApnsMac.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E5F8AAF1AB9AB998C45EC1DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7EEEF16792DA0758EB4EFE68 /* Pods_FKApnsMac.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00AD9BA121F1A27D00A8B877 /* FKApnsMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00AD9BB321F1A27F00A8B877 /* Build configuration list for PBXNativeTarget "FKApnsMac" */;
+			buildPhases = (
+				C5C7059D4AAD6DD1D12AE9D0 /* [CP] Check Pods Manifest.lock */,
+				00AD9B9E21F1A27D00A8B877 /* Sources */,
+				00AD9B9F21F1A27D00A8B877 /* Frameworks */,
+				00AD9BA021F1A27D00A8B877 /* Resources */,
+				DBF8EF4380B74CC81948369E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FKApnsMac;
+			productName = FKApnsMac;
+			productReference = 00AD9BA221F1A27D00A8B877 /* FKApnsMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00AD9B9A21F1A27D00A8B877 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = fengsh;
+				TargetAttributes = {
+					00AD9BA121F1A27D00A8B877 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 00AD9B9D21F1A27D00A8B877 /* Build configuration list for PBXProject "FKApnsMac" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00AD9B9921F1A27D00A8B877;
+			productRefGroup = 00AD9BA321F1A27D00A8B877 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00AD9BA121F1A27D00A8B877 /* FKApnsMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00AD9BA021F1A27D00A8B877 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00AD9BBA21F1A33800A8B877 /* FKMainWindowController.xib in Resources */,
+				00AD9BA921F1A27F00A8B877 /* Assets.xcassets in Resources */,
+				00AD9BCA21F56E5E00A8B877 /* HB5ZXX7MYQ.p8 in Resources */,
+				00AD9BCB21F56E5E00A8B877 /* test_private.txt in Resources */,
+				00AD9BAC21F1A27F00A8B877 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C5C7059D4AAD6DD1D12AE9D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FKApnsMac-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBF8EF4380B74CC81948369E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FKApnsMac/Pods-FKApnsMac-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Base64/Base64.framework",
+				"${BUILT_PRODUCTS_DIR}/JWT/JWT.framework",
+				"${BUILT_PRODUCTS_DIR}/KVOController/KVOController.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base64.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVOController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FKApnsMac/Pods-FKApnsMac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00AD9B9E21F1A27D00A8B877 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00AD9BB921F1A33800A8B877 /* FKMainWindowController.m in Sources */,
+				00AD9BC021F1C81C00A8B877 /* APNSSecIdentityType.m in Sources */,
+				00AD9BC621F1DF3D00A8B877 /* FKAPNSHttp2_0.m in Sources */,
+				00AD9BAF21F1A27F00A8B877 /* main.m in Sources */,
+				00AD9BBD21F1C08000A8B877 /* APNSDocument.m in Sources */,
+				00AD9BC321F1D6EA00A8B877 /* APNSItem.m in Sources */,
+				00AD9BA721F1A27D00A8B877 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		00AD9BAA21F1A27F00A8B877 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00AD9BAB21F1A27F00A8B877 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00AD9BB121F1A27F00A8B877 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		00AD9BB221F1A27F00A8B877 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		00AD9BB421F1A27F00A8B877 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F68D1EF5529F027146EDA55 /* Pods-FKApnsMac.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FKApnsMac/FKApnsMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = FKApnsMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shimao.testSM.FKApnsMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		00AD9BB521F1A27F00A8B877 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4229EFCBB09A770C606A538 /* Pods-FKApnsMac.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FKApnsMac/FKApnsMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = FKApnsMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shimao.testSM.FKApnsMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00AD9B9D21F1A27D00A8B877 /* Build configuration list for PBXProject "FKApnsMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00AD9BB121F1A27F00A8B877 /* Debug */,
+				00AD9BB221F1A27F00A8B877 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00AD9BB321F1A27F00A8B877 /* Build configuration list for PBXNativeTarget "FKApnsMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00AD9BB421F1A27F00A8B877 /* Debug */,
+				00AD9BB521F1A27F00A8B877 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00AD9B9A21F1A27D00A8B877 /* Project object */;
+}
