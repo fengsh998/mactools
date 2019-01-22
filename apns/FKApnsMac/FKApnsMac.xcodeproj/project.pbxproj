@@ -22,6 +22,14 @@
 		00AD9BCA21F56E5E00A8B877 /* HB5ZXX7MYQ.p8 in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BC821F56E5E00A8B877 /* HB5ZXX7MYQ.p8 */; };
 		00AD9BCB21F56E5E00A8B877 /* test_private.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BC921F56E5E00A8B877 /* test_private.txt */; };
 		1D22A463B17F7867085ADE7A /* Pods_FKApnsMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EEEF16792DA0758EB4EFE68 /* Pods_FKApnsMac.framework */; };
+		9D950FE121F75E5000AFF49C /* JwtSwiftToOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FE021F75E5000AFF49C /* JwtSwiftToOC.swift */; };
+		9D950FED21F75ECC00AFF49C /* CupertinoJWTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FE521F75ECC00AFF49C /* CupertinoJWTError.swift */; };
+		9D950FEE21F75ECC00AFF49C /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FE621F75ECC00AFF49C /* JWT.swift */; };
+		9D950FEF21F75ECC00AFF49C /* ECKeyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FE721F75ECC00AFF49C /* ECKeyData.swift */; };
+		9D950FF021F75ECC00AFF49C /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FE821F75ECC00AFF49C /* Data+Extension.swift */; };
+		9D950FF121F75ECC00AFF49C /* P8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FE921F75ECC00AFF49C /* P8.swift */; };
+		9D950FF221F75ECC00AFF49C /* ECPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FEA21F75ECC00AFF49C /* ECPrivateKey.swift */; };
+		9D950FF321F75ECC00AFF49C /* ASN1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950FEB21F75ECC00AFF49C /* ASN1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +60,15 @@
 		00AD9BC921F56E5E00A8B877 /* test_private.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_private.txt; sourceTree = "<group>"; };
 		0F68D1EF5529F027146EDA55 /* Pods-FKApnsMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FKApnsMac.debug.xcconfig"; path = "Target Support Files/Pods-FKApnsMac/Pods-FKApnsMac.debug.xcconfig"; sourceTree = "<group>"; };
 		7EEEF16792DA0758EB4EFE68 /* Pods_FKApnsMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FKApnsMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D950FDF21F75E5000AFF49C /* FKApnsMac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FKApnsMac-Bridging-Header.h"; sourceTree = "<group>"; };
+		9D950FE021F75E5000AFF49C /* JwtSwiftToOC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtSwiftToOC.swift; sourceTree = "<group>"; };
+		9D950FE521F75ECC00AFF49C /* CupertinoJWTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupertinoJWTError.swift; sourceTree = "<group>"; };
+		9D950FE621F75ECC00AFF49C /* JWT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
+		9D950FE721F75ECC00AFF49C /* ECKeyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECKeyData.swift; sourceTree = "<group>"; };
+		9D950FE821F75ECC00AFF49C /* Data+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		9D950FE921F75ECC00AFF49C /* P8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P8.swift; sourceTree = "<group>"; };
+		9D950FEA21F75ECC00AFF49C /* ECPrivateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECPrivateKey.swift; sourceTree = "<group>"; };
+		9D950FEB21F75ECC00AFF49C /* ASN1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASN1.swift; sourceTree = "<group>"; };
 		F4229EFCBB09A770C606A538 /* Pods-FKApnsMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FKApnsMac.release.xcconfig"; path = "Target Support Files/Pods-FKApnsMac/Pods-FKApnsMac.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +105,8 @@
 		00AD9BA421F1A27D00A8B877 /* FKApnsMac */ = {
 			isa = PBXGroup;
 			children = (
+				9D950FE221F75ECC00AFF49C /* jwtswift */,
+				9D950FE021F75E5000AFF49C /* JwtSwiftToOC.swift */,
 				00AD9BC821F56E5E00A8B877 /* HB5ZXX7MYQ.p8 */,
 				00AD9BC921F56E5E00A8B877 /* test_private.txt */,
 				00AD9BA521F1A27D00A8B877 /* AppDelegate.h */,
@@ -112,6 +131,7 @@
 				00AD9BAD21F1A27F00A8B877 /* Info.plist */,
 				00AD9BAE21F1A27F00A8B877 /* main.m */,
 				00AD9BB021F1A27F00A8B877 /* FKApnsMac.entitlements */,
+				9D950FDF21F75E5000AFF49C /* FKApnsMac-Bridging-Header.h */,
 			);
 			path = FKApnsMac;
 			sourceTree = "<group>";
@@ -123,6 +143,28 @@
 				F4229EFCBB09A770C606A538 /* Pods-FKApnsMac.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9D950FE221F75ECC00AFF49C /* jwtswift */ = {
+			isa = PBXGroup;
+			children = (
+				9D950FE421F75ECC00AFF49C /* src */,
+			);
+			path = jwtswift;
+			sourceTree = "<group>";
+		};
+		9D950FE421F75ECC00AFF49C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9D950FE521F75ECC00AFF49C /* CupertinoJWTError.swift */,
+				9D950FE621F75ECC00AFF49C /* JWT.swift */,
+				9D950FE721F75ECC00AFF49C /* ECKeyData.swift */,
+				9D950FE821F75ECC00AFF49C /* Data+Extension.swift */,
+				9D950FE921F75ECC00AFF49C /* P8.swift */,
+				9D950FEA21F75ECC00AFF49C /* ECPrivateKey.swift */,
+				9D950FEB21F75ECC00AFF49C /* ASN1.swift */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		E5F8AAF1AB9AB998C45EC1DD /* Frameworks */ = {
@@ -166,6 +208,7 @@
 				TargetAttributes = {
 					00AD9BA121F1A27D00A8B877 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -262,15 +305,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D950FEE21F75ECC00AFF49C /* JWT.swift in Sources */,
 				000D8EFA21F6AD1900CD6BBD /* FKJwtToken.m in Sources */,
+				9D950FF021F75ECC00AFF49C /* Data+Extension.swift in Sources */,
 				00AD9BB921F1A33800A8B877 /* FKMainWindowController.m in Sources */,
+				9D950FF221F75ECC00AFF49C /* ECPrivateKey.swift in Sources */,
 				00AD9BC021F1C81C00A8B877 /* APNSSecIdentityType.m in Sources */,
+				9D950FF321F75ECC00AFF49C /* ASN1.swift in Sources */,
 				00AD9BC621F1DF3D00A8B877 /* FKAPNSHttp2_0.m in Sources */,
 				00AD9BAF21F1A27F00A8B877 /* main.m in Sources */,
+				9D950FED21F75ECC00AFF49C /* CupertinoJWTError.swift in Sources */,
 				000D8EF721F6A7E700CD6BBD /* FKAPNSUtils.m in Sources */,
 				00AD9BBD21F1C08000A8B877 /* APNSDocument.m in Sources */,
+				9D950FF121F75ECC00AFF49C /* P8.swift in Sources */,
 				00AD9BC321F1D6EA00A8B877 /* APNSItem.m in Sources */,
+				9D950FE121F75E5000AFF49C /* JwtSwiftToOC.swift in Sources */,
 				00AD9BA721F1A27D00A8B877 /* AppDelegate.m in Sources */,
+				9D950FEF21F75ECC00AFF49C /* ECKeyData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +455,7 @@
 			baseConfigurationReference = 0F68D1EF5529F027146EDA55 /* Pods-FKApnsMac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FKApnsMac/FKApnsMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -416,6 +468,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shimao.testSM.FKApnsMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FKApnsMac/FKApnsMac-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -425,6 +479,7 @@
 			baseConfigurationReference = F4229EFCBB09A770C606A538 /* Pods-FKApnsMac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FKApnsMac/FKApnsMac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -437,6 +492,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shimao.testSM.FKApnsMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FKApnsMac/FKApnsMac-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

@@ -152,6 +152,7 @@
 
 @interface FKAPNSHttp2_0 () <NSURLSessionDelegate>
 @property (nonatomic, strong) NSURLSession          *session;
+
 @end
 
 @implementation FKAPNSHttp2_0
@@ -168,17 +169,6 @@
     return self;
 }
 
-- (NSString *)secret
-{
-    return @"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE0izAMfQ7xhdrx07MziByyh4CbTgbQ0KYt0zSgNyrz1Re78e9m7FYDES95y/f5zZ1HSmq0+h4LJRmcpV0BXethA==";
-   
-    
-//    return @"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/HA2HPrA6ohj+q9l0RtdOuzzBd/rYeQturbRTIP+D7agCgYIKoZIzj0DAQehRANCAATMl0JFThE0xFxJZdlV8A0UXcgg4QVbdgI62E91QWTr5YktHgvGyzw6RGfwF19Ucy+zS0zdaKDO2wgGWsAfNqFQ";
-    
-    
-//    return @"-----BEGIN PRIVATE KEY-----MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/HA2HPrA6ohj+q9l0RtdOuzzBd/rYeQturbRTIP+D7agCgYIKoZIzj0DAQehRANCAATMl0JFThE0xFxJZdlV8A0UXcgg4QVbdgI62E91QWTr5YktHgvGyzw6RGfwF19Ucy+zS0zdaKDO2wgGWsAfNqFQ-----END PRIVATE KEY-----";
-}
-
 - (void)setAuthIdentity:(SecIdentityRef)authIdentity
 {
     if (_authIdentity != authIdentity) {
@@ -193,29 +183,39 @@
     }
 }
 
-- (void)pushPayload:(nonnull NSDictionary *)payload
-            toToken:(nonnull NSString *)token
-              topic:(nullable NSString *)topic
-           priority:(NSInteger)priority
-         collapseId:(nullable NSString *)collapseid
-       inProduction:(BOOL)isProduction
+- (NSString *)getUUID
 {
+    CFUUIDRef puuid = CFUUIDCreate( nil );
+    CFStringRef uuidString = CFUUIDCreateString(nil, puuid);
+    NSString *result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
+    return result;
+}
+
+- (NSString *)pushPayload:(nonnull NSDictionary *)payload
+                  toToken:(nonnull NSString *)token
+                    topic:(nullable NSString *)topic
+                 priority:(NSInteger)priority
+               collapseId:(nullable NSString *)collapseid
+             inProduction:(BOOL)isProduction
+{
+    NSAssert(_authIdentity || _authorization, @"证书和Jwt Token都为空!两者必须选择一种！");
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api%@.push.apple.com/3/device/%@", isProduction ? @"" : @".development", token]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     request.HTTPMethod = @"POST";
     
     NSError *err = nil;
-    
+    NSString *apnsid = [self getUUID];
     ///请求body
     NSData *body = [NSJSONSerialization dataWithJSONObject:payload options:0 error:&err];
     
     if (err) {
         NSString * errmsg = [NSString stringWithFormat:@"Push Request body Error: %@",err.localizedDescription];
         NSError *bodyjsonerror = [NSError errorWithDomain:@"com.fsh.apns.errdomain" code:err.code userInfo:@{NSLocalizedDescriptionKey:errmsg}];
-        if ([self.delegate respondsToSelector:@selector(fk_apns:didFailedWithError:)]) {
-            [self.delegate fk_apns:self didFailedWithError:bodyjsonerror];
+        if ([self.delegate respondsToSelector:@selector(fk_apns:didFailedWithError:forReqid:)]) {
+            [self.delegate fk_apns:self didFailedWithError:bodyjsonerror forReqid:apnsid];
         }
-        return;
+        return apnsid;
     }
     
     request.HTTPBody = body;
@@ -233,6 +233,14 @@
     
     // apns-expiration
     // apns-id
+    [request addValue:apnsid forHTTPHeaderField:@"apns-id"];
+    
+    ///如果有authIdentity证书，则这个字段被忽略
+    NSString *authorization = self.authorization;
+    if (authorization) {
+        authorization = [NSString stringWithFormat:@"bearer %@",authorization];
+        [request addValue:authorization forHTTPHeaderField:@"authorization"];
+    }
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
@@ -240,8 +248,8 @@
         NSString *apnsid_resp = r.allHeaderFields[@"apns-id"];
         
         if (r == nil && error) {
-            if ([self.delegate respondsToSelector:@selector(fk_apns:didFailedWithError:)]) {
-                [self.delegate fk_apns:self didFailedWithError:error];
+            if ([self.delegate respondsToSelector:@selector(fk_apns:didFailedWithError:forReqid:)]) {
+                [self.delegate fk_apns:self didFailedWithError:error forReqid:apnsid];
             }
             return;
         }
@@ -250,8 +258,8 @@
             NSError *error = nil;
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             if (error) {
-                if ([self.delegate respondsToSelector:@selector(fk_apns:didFailedWithError:)]) {
-                    [self.delegate fk_apns:self didFailedWithError:error];
+                if ([self.delegate respondsToSelector:@selector(fk_apns:didFailedWithError:forReqid:)]) {
+                    [self.delegate fk_apns:self didFailedWithError:error forReqid:apnsid];
                 }
                 return;
             }
@@ -267,6 +275,8 @@
         }
     }];
     [task resume];
+    
+    return apnsid;
 }
 
 #pragma mark - NSURLSessionDelegate
@@ -289,6 +299,7 @@
     }
 }
 
+/*
 - (void)pushPayloadJWT:(nonnull NSDictionary *)payload
                toToken:(nonnull NSString *)token
                  topic:(nullable NSString *)topic
@@ -372,140 +383,141 @@
     }];
     [task resume];
 }
+*/
 
-- (void)tttt
-{
-    NSString *key = @"MHcCAQEEIJmVse5uPfj6B4TcXrUAvf9/8pJh+KrKKYLNcmOnp/vPoAoGCCqGSM49AwEHoUQDQgAEAr+WbDE5VtIDGhtYMxvEc6cMsDBc/DX1wuhIMu8dQzOLSt0tpqK9MVfXbVfrKdayVFgoWzs8MilcYq0QIhKx/w==";
-    
-    NSData *data = [JWTBase64Coder dataWithBase64UrlEncodedString:key];
-    NSString *keyClass = (__bridge NSString *)kSecAttrKeyClassPrivate;
-    NSString *type = (__bridge NSString *)kSecAttrKeyTypeECSECPrimeRandom;
-    NSInteger sizeInBits = 256;//data.length * [JWTMemoryLayout createWithType:[JWTMemoryLayout typeUInt8]].size;
-    NSDictionary *attributes = @{
-                                 (__bridge NSString*)kSecAttrKeyType : type,
-                                 (__bridge NSString*)kSecAttrKeyClass : keyClass,
-                                 (__bridge NSString*)kSecAttrKeySizeInBits : @(sizeInBits)
-                                 };
-    
-
-    if (SecKeyCreateWithData != NULL) {
-        CFErrorRef createError = NULL;
-        SecKeyRef key = SecKeyCreateWithData((__bridge CFDataRef)data, (__bridge CFDictionaryRef)attributes, &createError);
-        if (createError != NULL) {
-            (__bridge NSError*)createError;
-        }
-        
-    }
-    
-}
-
-- (void)signWithAppleAPNS
-{
-    NSString *algorithmName = @"ES256";
-    NSString *privateKey = @"-----BEGIN PRIVATE KEY-----\n"
-"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgpnX9ZXmgLCWQ+Hkpvae2PLU68XEzJdp+NjswuBS9RHWgCgYIKoZIzj0DAQehRANCAARMSO6bkKjLT+9Mx9wJRXoqUx+CbeOhAbVGS+3fgvVNGv3QM3NlMou3uguMrITwVvpWjuocXbSzjTwMstMMjsZg\n"
-    "-----END PRIVATE KEY-----";
-    
-    id <JWTAlgorithmDataHolderProtocol> signDataHolder = [JWTAlgorithmRSFamilyDataHolder new]
-    .keyExtractorType([JWTCryptoKeyExtractor privateKeyWithPEMBase64].type)
-    .algorithmName(algorithmName)
-    .secret(privateKey);
-    
-    
-    // sign
-    NSDictionary *payloadDictionary = @{ @"hello": @"world" };
-    
-    JWTCodingBuilder *signBuilder = [JWTEncodingBuilder encodePayload:payloadDictionary].addHolder(signDataHolder);
-    JWTCodingResultType *signResult = signBuilder.result;
-    NSString *token = nil;
-    if (signResult.successResult) {
-        // success
-        NSLog(@"%@ success: %@", self.debugDescription, signResult.successResult.encoded);
-        token = signResult.successResult.encoded;
-    } else {
-        // error
-        NSLog(@"%@ error: %@", self.debugDescription, signResult.errorResult.error);
-    }
-    
-    // verify
-    if (token == nil) {
-        NSLog(@"something wrong");
-    }
-}
-
-- (NSString *)test
-{
-//    FKJwt *jj = [[FKJwt alloc]init];
-    
-    [self tttt];
-//    NSString *path = [[NSBundle mainBundle]pathForResource:@"HB5ZXX7MYQ" ofType:@"p8"];
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"test_private" ofType:@"txt"];
-    NSData *pk = [NSData dataWithContentsOfFile:path];
-    
-    NSString *pks = [[NSString alloc]initWithData:pk encoding:NSUTF8StringEncoding];
-    
-    NSString *privateKeyString = pks;//@"<ANSI X9.63 formatted key>";
-    NSString *publicKeyString = @"<ANSI X9.63 formatted key>";
-    
-    // Note: We should pass type of key. Default type is RSA.
-    NSDictionary *parameters = @{JWTCryptoKey.parametersKeyBuilder : JWTCryptoKeyBuilder.new.keyTypeEC};
-    
-    NSError *error = nil;
-    
-    id <JWTCryptoKeyProtocol> privateKey = [[JWTCryptoKeyPrivate alloc] initWithPemEncoded:privateKeyString parameters:parameters error:&error];
-    
-    id <JWTCryptoKeyProtocol> publicKey = [[JWTCryptoKeyPublic alloc] initWithPemEncoded:publicKeyString parameters:parameters error:nil];
-    
-    // Note: JWTAlgorithmRSFamilyDataHolder will be renamed to something more appropriate. It can holds any asymmetric keys pair (private and public).
-    id <JWTAlgorithmDataHolderProtocol> holder = [JWTAlgorithmRSFamilyDataHolder new].signKey(privateKey).verifyKey(publicKey).algorithmName(JWTAlgorithmNameES256);
-    
-    
-    return nil;
-    
-    NSArray *items = [self authkey];
-    NSMutableArray *ss = [NSMutableArray array];
-    for (NSDictionary *item in items) {
-        NSData *dt = [NSJSONSerialization dataWithJSONObject:item options:0 error:nil];
-        NSString *s1 = [JWTBase64Coder base64UrlEncodedStringWithData:dt];
-        [ss addObject:s1];
-    }
-    
-    NSString *part1 = [ss componentsJoinedByString:@"."];
-    
-    ///ES256
-    id<JWTAlgorithm> algorithm = [JWTAlgorithmFactory algorithmByName:JWTAlgorithmNameES256];
-    NSString *sec = [self secret];
-    
-    NSData *a = [part1 dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *b = [sec dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err = nil;
-    
-//    JWTAlgorithmAsymmetricBase *jjj = algorithm;
+//- (void)tttt
+//{
+//    NSString *key = @"MHcCAQEEIJmVse5uPfj6B4TcXrUAvf9/8pJh+KrKKYLNcmOnp/vPoAoGCCqGSM49AwEHoUQDQgAEAr+WbDE5VtIDGhtYMxvEc6cMsDBc/DX1wuhIMu8dQzOLSt0tpqK9MVfXbVfrKdayVFgoWzs8MilcYq0QIhKx/w==";
 //
-//    id <JWTAlgorithmDataHolderProtocol> firstHolder = [JWTAlgorithmHSFamilyDataHolder new].algorithmName(JWTAlgorithmNameES256).secret(sec);
-//    jjj.signKey = firstHolder;
-//    NSData *part3dt = [jjj signHash:a key:b error:&err];
-    NSData *part3dt = [algorithm encodePayloadData:a withSecret:b];
-    NSString *part3 = [JWTBase64Coder base64UrlEncodedStringWithData:part3dt];
-    
-//    JWTBuilder en
-    
-    
-    return [NSString stringWithFormat:@"%@.%@",part1,part3];
-}
+//    NSData *data = [JWTBase64Coder dataWithBase64UrlEncodedString:key];
+//    NSString *keyClass = (__bridge NSString *)kSecAttrKeyClassPrivate;
+//    NSString *type = (__bridge NSString *)kSecAttrKeyTypeECSECPrimeRandom;
+//    NSInteger sizeInBits = 256;//data.length * [JWTMemoryLayout createWithType:[JWTMemoryLayout typeUInt8]].size;
+//    NSDictionary *attributes = @{
+//                                 (__bridge NSString*)kSecAttrKeyType : type,
+//                                 (__bridge NSString*)kSecAttrKeyClass : keyClass,
+//                                 (__bridge NSString*)kSecAttrKeySizeInBits : @(sizeInBits)
+//                                 };
+//
+//
+//    if (SecKeyCreateWithData != NULL) {
+//        CFErrorRef createError = NULL;
+//        SecKeyRef key = SecKeyCreateWithData((__bridge CFDataRef)data, (__bridge CFDictionaryRef)attributes, &createError);
+//        if (createError != NULL) {
+//            (__bridge NSError*)createError;
+//        }
+//
+//    }
+//
+//}
 
-- (NSArray *)authkey
-{
-    NSTimeInterval t = [[NSDate date]timeIntervalSince1970]*1000;
-//    NSString *timeString = [NSString stringWithFormat:@"%0.f", t];
-    NSUInteger unixtime = (NSUInteger)t;
-    
-    
-    return @[
-             @{@"alg": @"ES256",@"kid": @"HB5ZXX7MYQ",@"typ":@"JWT"},
-            @{@"iss": @"XUUYEB97Z2",@"iat": @(unixtime)}
-             ];
-}
+//- (void)signWithAppleAPNS
+//{
+//    NSString *algorithmName = @"ES256";
+//    NSString *privateKey = @"-----BEGIN PRIVATE KEY-----\n"
+//"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgpnX9ZXmgLCWQ+Hkpvae2PLU68XEzJdp+NjswuBS9RHWgCgYIKoZIzj0DAQehRANCAARMSO6bkKjLT+9Mx9wJRXoqUx+CbeOhAbVGS+3fgvVNGv3QM3NlMou3uguMrITwVvpWjuocXbSzjTwMstMMjsZg\n"
+//    "-----END PRIVATE KEY-----";
+//
+//    id <JWTAlgorithmDataHolderProtocol> signDataHolder = [JWTAlgorithmRSFamilyDataHolder new]
+//    .keyExtractorType([JWTCryptoKeyExtractor privateKeyWithPEMBase64].type)
+//    .algorithmName(algorithmName)
+//    .secret(privateKey);
+//
+//
+//    // sign
+//    NSDictionary *payloadDictionary = @{ @"hello": @"world" };
+//
+//    JWTCodingBuilder *signBuilder = [JWTEncodingBuilder encodePayload:payloadDictionary].addHolder(signDataHolder);
+//    JWTCodingResultType *signResult = signBuilder.result;
+//    NSString *token = nil;
+//    if (signResult.successResult) {
+//        // success
+//        NSLog(@"%@ success: %@", self.debugDescription, signResult.successResult.encoded);
+//        token = signResult.successResult.encoded;
+//    } else {
+//        // error
+//        NSLog(@"%@ error: %@", self.debugDescription, signResult.errorResult.error);
+//    }
+//
+//    // verify
+//    if (token == nil) {
+//        NSLog(@"something wrong");
+//    }
+//}
+
+//- (NSString *)test
+//{
+////    FKJwt *jj = [[FKJwt alloc]init];
+//
+//    [self tttt];
+////    NSString *path = [[NSBundle mainBundle]pathForResource:@"HB5ZXX7MYQ" ofType:@"p8"];
+//    NSString *path = [[NSBundle mainBundle]pathForResource:@"test_private" ofType:@"txt"];
+//    NSData *pk = [NSData dataWithContentsOfFile:path];
+//
+//    NSString *pks = [[NSString alloc]initWithData:pk encoding:NSUTF8StringEncoding];
+//
+//    NSString *privateKeyString = pks;//@"<ANSI X9.63 formatted key>";
+//    NSString *publicKeyString = @"<ANSI X9.63 formatted key>";
+//
+//    // Note: We should pass type of key. Default type is RSA.
+//    NSDictionary *parameters = @{JWTCryptoKey.parametersKeyBuilder : JWTCryptoKeyBuilder.new.keyTypeEC};
+//
+//    NSError *error = nil;
+//
+//    id <JWTCryptoKeyProtocol> privateKey = [[JWTCryptoKeyPrivate alloc] initWithPemEncoded:privateKeyString parameters:parameters error:&error];
+//
+//    id <JWTCryptoKeyProtocol> publicKey = [[JWTCryptoKeyPublic alloc] initWithPemEncoded:publicKeyString parameters:parameters error:nil];
+//
+//    // Note: JWTAlgorithmRSFamilyDataHolder will be renamed to something more appropriate. It can holds any asymmetric keys pair (private and public).
+//    id <JWTAlgorithmDataHolderProtocol> holder = [JWTAlgorithmRSFamilyDataHolder new].signKey(privateKey).verifyKey(publicKey).algorithmName(JWTAlgorithmNameES256);
+//
+//
+//    return nil;
+//
+//    NSArray *items = [self authkey];
+//    NSMutableArray *ss = [NSMutableArray array];
+//    for (NSDictionary *item in items) {
+//        NSData *dt = [NSJSONSerialization dataWithJSONObject:item options:0 error:nil];
+//        NSString *s1 = [JWTBase64Coder base64UrlEncodedStringWithData:dt];
+//        [ss addObject:s1];
+//    }
+//
+//    NSString *part1 = [ss componentsJoinedByString:@"."];
+//
+//    ///ES256
+//    id<JWTAlgorithm> algorithm = [JWTAlgorithmFactory algorithmByName:JWTAlgorithmNameES256];
+//    NSString *sec = [self secret];
+//
+//    NSData *a = [part1 dataUsingEncoding:NSUTF8StringEncoding];
+//    NSData *b = [sec dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError *err = nil;
+//
+////    JWTAlgorithmAsymmetricBase *jjj = algorithm;
+////
+////    id <JWTAlgorithmDataHolderProtocol> firstHolder = [JWTAlgorithmHSFamilyDataHolder new].algorithmName(JWTAlgorithmNameES256).secret(sec);
+////    jjj.signKey = firstHolder;
+////    NSData *part3dt = [jjj signHash:a key:b error:&err];
+//    NSData *part3dt = [algorithm encodePayloadData:a withSecret:b];
+//    NSString *part3 = [JWTBase64Coder base64UrlEncodedStringWithData:part3dt];
+//
+////    JWTBuilder en
+//
+//
+//    return [NSString stringWithFormat:@"%@.%@",part1,part3];
+//}
+//
+//- (NSArray *)authkey
+//{
+//    NSTimeInterval t = [[NSDate date]timeIntervalSince1970]*1000;
+////    NSString *timeString = [NSString stringWithFormat:@"%0.f", t];
+//    NSUInteger unixtime = (NSUInteger)t;
+//
+//
+//    return @[
+//             @{@"alg": @"ES256",@"kid": @"HB5ZXX7MYQ",@"typ":@"JWT"},
+//            @{@"iss": @"XUUYEB97Z2",@"iat": @(unixtime)}
+//             ];
+//}
 
 -(id)jwtDecodeWithJwtString:(NSString *)jwtStr
 {

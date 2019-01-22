@@ -110,6 +110,11 @@
 {
     NSAssert(privatekey, @"privatekey is null!");
     
+#define swift_sign 1
+#if swift_sign
+    JwtSwiftToOC *ocToken = [[JwtSwiftToOC alloc]init];
+    return [ocToken jwtGenerateTokenWithTeamId:_teamid Keyid:_keyid p8:privatekey];
+#else
     NSString *secert = [[self class]fk_jwtSecertFromPrivateKey:privatekey];
     NSData *sdata = [[NSData alloc]initWithBase64EncodedString:secert options:0];
     if (!sdata) {
@@ -120,6 +125,7 @@
 //    SecKeyRef sckref = [self checkCreatePrivateSecKey:sdata password:nil];
     [self toASN1Element:sdata];
     return [self fk_jwtDigestString];
+#endif
 }
 
 - (SecKeyRef)checkCreatePrivateSecKey:(NSData *)privateKeyData password:(NSString *)password

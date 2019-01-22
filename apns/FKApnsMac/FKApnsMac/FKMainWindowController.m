@@ -46,9 +46,7 @@
     self.segmentEnv.hidden = YES;
     
     
-    FKJwtToken *jwttoken = [[FKJwtToken alloc]initWithTeamId:@"XUUYEB97Z2" Keyid:@"HB5ZXX7MYQ" expireDuration:0];
     
-    NSLog(@"s = %@",[jwttoken fk_jwtGenerateTokenWithPrivateKey:[self getP8PrivateKey]]);
 
     NSDictionary *token = [self.apnsEngine jwtDecodeWithJwtString:@"eyAia2lkIjogIjhZTDNHM1JSWDciIH0.eyAiaXNzIjogIkM4Nk5WOUpYM0QiLCAiaWF0IjogIjE0NTkxNDM1ODA2NTAiIH0.MEYCIQDzqyahmH1rz1s-LFNkylXEa2lZ_aOCX4daxxTZkVEGzwIhALvkClnx5m5eAT6Lxw7LZtEQcH6JENhJTMArwLf3sXwi"];
     NSLog(@"tk = %@",token);
@@ -85,10 +83,15 @@
 //    [self.apnsEngine pushPayload:[self payload] toToken:[self preparedToken] topic:self.cbx_topics.selectedItem.title
 //                        priority:10 collapseId:nil inProduction:NO];
     
+    FKJwtToken *jwttoken = [[FKJwtToken alloc]initWithTeamId:@"XUUYEB97Z2" Keyid:@"HB5ZXX7MYQ" expireDuration:0];
+    NSString *auth = [jwttoken fk_jwtGenerateTokenWithPrivateKey:[self getP8PrivateKey]];
+    NSLog(@"s = %@",auth);
+    
+    self.apnsEngine.authorization = auth;
     NSString *topic =  self.cbx_topics.selectedItem.title;
     topic = @"com.shimaowy.iot.voip";
-    [self.apnsEngine pushPayloadJWT:[self payload] toToken:[self preparedToken] topic:topic
-                        priority:10 collapseId:nil inProduction:NO];
+    [self.apnsEngine pushPayload:[self payload] toToken:[self preparedToken] topic:topic priority:10 collapseId:nil inProduction:NO];
+    
 }
 
 - (NSString *)preparedToken
@@ -211,9 +214,9 @@
     NSLog(@"status = %ld,reason = %@,apnsid = %@",statusCode,reason,apnsid);
 }
 
-- (void)fk_apns:(FKAPNSHttp2_0 *)apns didFailedWithError:(NSError *)error
+- (void)fk_apns:(FKAPNSHttp2_0 *)apns didFailedWithError:(NSError *)error forReqid:(nonnull NSString *)apnsid
 {
-    NSLog(@"error = %@",error);
+    NSLog(@"error = %@,apnsid = %@",error,apnsid);
 }
 
 @end
