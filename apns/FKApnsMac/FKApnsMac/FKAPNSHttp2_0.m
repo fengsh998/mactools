@@ -149,7 +149,6 @@
 #import <Security/Security.h>
 #import "APNSSecIdentityType.h"
 #import <JWT/JWT.h>
-//#import "FKApnsMac-Swift.h"
 
 @interface FKAPNSHttp2_0 () <NSURLSessionDelegate>
 @property (nonatomic, strong) NSURLSession          *session;
@@ -522,7 +521,6 @@
     }
     base64String = [base64String stringByReplacingOccurrencesOfString:@"-" withString:@"+"];
     base64String = [base64String stringByReplacingOccurrencesOfString:@"_" withString:@"/"];
-//    NSData * decodeData = [[NSData alloc] initWithBase64EncodedData:base64String options:0];
     NSData * decodeData = [[NSData alloc] initWithBase64EncodedData:[base64String dataUsingEncoding:NSUTF8StringEncoding] options:0];
     NSString * decodeString = [[NSString alloc] initWithData:decodeData encoding:NSUTF8StringEncoding];
     NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:[decodeString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];

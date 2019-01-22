@@ -19,7 +19,19 @@ private indirect enum ASN1Element {
 }
 
 extension ASN1 {
+    
+    ///日志追踪
+    private func lookDataInfo(data:Data,pos:String) {
+        let dataStr = data.withUnsafeBytes {
+            [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
+        }
+        print(pos + " : " + "\(dataStr)")
+    }
+    
     public func toECKeyData() throws -> ECKeyData {
+        
+        self.lookDataInfo(data: self,pos: "原始数据")
+        
         let (result, _) = self.toASN1Element()
 
         guard case let ASN1Element.seq(elements: es) = result,
@@ -35,7 +47,14 @@ extension ASN1 {
                 throw CupertinoJWTError.invalidAsn1
         }
 
+        self.lookDataInfo(data: publicKeyData,pos: "公钥数据")
+        
+        self.lookDataInfo(data: privateKeyData,pos: "私钥数据")
+        
         let keyData = (publicKeyData.drop(while: { $0 == 0x00}) + privateKeyData)
+        
+        self.lookDataInfo(data: privateKeyData,pos: "EC格式的KeyData")
+        
         return keyData
     }
 
@@ -62,6 +81,7 @@ extension ASN1 {
     }
 
     private func readLength() -> (Int, Int) {
+        print(self[0])
         if self[0] & 0x80 == 0x00 { // short form
             return (Int(self[0]), 1)
         } else {
@@ -85,6 +105,9 @@ extension ASN1 {
             let (length, lengthOfLength) = self.advanced(by: 1).readLength()
             var result: [ASN1Element] = []
             var subdata = self.advanced(by: 1 + lengthOfLength)
+            
+            self.lookDataInfo(data: subdata,pos: "剩余部份")
+            
             var alreadyRead = 0
 
             while alreadyRead < length {

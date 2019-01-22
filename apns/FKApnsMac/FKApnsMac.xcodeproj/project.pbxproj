@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000D8EF721F6A7E700CD6BBD /* FKAPNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8EF621F6A7E700CD6BBD /* FKAPNSUtils.m */; };
+		000D8EFA21F6AD1900CD6BBD /* FKJwtToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 000D8EF921F6AD1900CD6BBD /* FKJwtToken.m */; };
 		00AD9BA721F1A27D00A8B877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AD9BA621F1A27D00A8B877 /* AppDelegate.m */; };
 		00AD9BA921F1A27F00A8B877 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BA821F1A27F00A8B877 /* Assets.xcassets */; };
 		00AD9BAC21F1A27F00A8B877 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AD9BAA21F1A27F00A8B877 /* MainMenu.xib */; };
@@ -23,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000D8EF521F6A7E700CD6BBD /* FKAPNSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FKAPNSUtils.h; sourceTree = "<group>"; };
+		000D8EF621F6A7E700CD6BBD /* FKAPNSUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FKAPNSUtils.m; sourceTree = "<group>"; };
+		000D8EF821F6AD1900CD6BBD /* FKJwtToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FKJwtToken.h; sourceTree = "<group>"; };
+		000D8EF921F6AD1900CD6BBD /* FKJwtToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FKJwtToken.m; sourceTree = "<group>"; };
 		00AD9BA221F1A27D00A8B877 /* FKApnsMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FKApnsMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AD9BA521F1A27D00A8B877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00AD9BA621F1A27D00A8B877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -82,7 +88,6 @@
 		00AD9BA421F1A27D00A8B877 /* FKApnsMac */ = {
 			isa = PBXGroup;
 			children = (
-				00AD9C1321F5C10D00A8B877 /* jwtswift */,
 				00AD9BC821F56E5E00A8B877 /* HB5ZXX7MYQ.p8 */,
 				00AD9BC921F56E5E00A8B877 /* test_private.txt */,
 				00AD9BA521F1A27D00A8B877 /* AppDelegate.h */,
@@ -91,6 +96,10 @@
 				00AD9BC221F1D6EA00A8B877 /* APNSItem.m */,
 				00AD9BBB21F1C08000A8B877 /* APNSDocument.h */,
 				00AD9BBC21F1C08000A8B877 /* APNSDocument.m */,
+				000D8EF521F6A7E700CD6BBD /* FKAPNSUtils.h */,
+				000D8EF621F6A7E700CD6BBD /* FKAPNSUtils.m */,
+				000D8EF821F6AD1900CD6BBD /* FKJwtToken.h */,
+				000D8EF921F6AD1900CD6BBD /* FKJwtToken.m */,
 				00AD9BC421F1DF3D00A8B877 /* FKAPNSHttp2_0.h */,
 				00AD9BC521F1DF3D00A8B877 /* FKAPNSHttp2_0.m */,
 				00AD9BBE21F1C81C00A8B877 /* APNSSecIdentityType.h */,
@@ -105,13 +114,6 @@
 				00AD9BB021F1A27F00A8B877 /* FKApnsMac.entitlements */,
 			);
 			path = FKApnsMac;
-			sourceTree = "<group>";
-		};
-		00AD9C1321F5C10D00A8B877 /* jwtswift */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = jwtswift;
 			sourceTree = "<group>";
 		};
 		1B8CBF870065F60800350289 /* Pods */ = {
@@ -260,10 +262,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000D8EFA21F6AD1900CD6BBD /* FKJwtToken.m in Sources */,
 				00AD9BB921F1A33800A8B877 /* FKMainWindowController.m in Sources */,
 				00AD9BC021F1C81C00A8B877 /* APNSSecIdentityType.m in Sources */,
 				00AD9BC621F1DF3D00A8B877 /* FKAPNSHttp2_0.m in Sources */,
 				00AD9BAF21F1A27F00A8B877 /* main.m in Sources */,
+				000D8EF721F6A7E700CD6BBD /* FKAPNSUtils.m in Sources */,
 				00AD9BBD21F1C08000A8B877 /* APNSDocument.m in Sources */,
 				00AD9BC321F1D6EA00A8B877 /* APNSItem.m in Sources */,
 				00AD9BA721F1A27D00A8B877 /* AppDelegate.m in Sources */,

@@ -16,6 +16,7 @@
 
 ///请求
 #import "FKAPNSHttp2_0.h"
+#import "FKJwtToken.h"
 #import <JWT/JWT.h>
 
 @interface FKMainWindowController ()<FKAPNSHttpDelegate>
@@ -43,6 +44,11 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     self.segmentEnv.hidden = YES;
+    
+    
+    FKJwtToken *jwttoken = [[FKJwtToken alloc]initWithTeamId:@"XUUYEB97Z2" Keyid:@"HB5ZXX7MYQ" expireDuration:0];
+    
+    NSLog(@"s = %@",[jwttoken fk_jwtGenerateTokenWithPrivateKey:[self getP8PrivateKey]]);
 
     NSDictionary *token = [self.apnsEngine jwtDecodeWithJwtString:@"eyAia2lkIjogIjhZTDNHM1JSWDciIH0.eyAiaXNzIjogIkM4Nk5WOUpYM0QiLCAiaWF0IjogIjE0NTkxNDM1ODA2NTAiIH0.MEYCIQDzqyahmH1rz1s-LFNkylXEa2lZ_aOCX4daxxTZkVEGzwIhALvkClnx5m5eAT6Lxw7LZtEQcH6JENhJTMArwLf3sXwi"];
     NSLog(@"tk = %@",token);
@@ -60,6 +66,17 @@
         _apnsEngine.delegate = self;
     }
     return _apnsEngine;
+}
+
+- (NSString *)getP8PrivateKey
+{
+    NSString *pkey = @"-----BEGIN PRIVATE KEY-----\n"
+    "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/HA2HPrA6ohj+q9l\n"
+    "0RtdOuzzBd/rYeQturbRTIP+D7agCgYIKoZIzj0DAQehRANCAATMl0JFThE0xFxJ\n"
+    "ZdlV8A0UXcgg4QVbdgI62E91QWTr5YktHgvGyzw6RGfwF19Ucy+zS0zdaKDO2wgG\n"
+    "WsAfNqFQ\n"
+    "-----END PRIVATE KEY-----";
+    return pkey;
 }
 
 #pragma mark - 发起推送
