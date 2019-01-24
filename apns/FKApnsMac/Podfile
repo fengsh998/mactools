@@ -9,5 +9,6 @@ target 'FKApnsMac' do
   pod 'Masonry', '~> 1.1.0'
   pod 'Mantle', '~> 2.1.0'
   pod 'JWT', '~> 3.0.0-beta.11'
+  pod 'pop', '~> 1.0.10'
 
 end

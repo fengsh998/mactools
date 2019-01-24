@@ -96,6 +96,7 @@
     NSUInteger unixtime = (NSUInteger)t;
     NSUInteger exp = unixtime+_expireduration;
     NSDictionary *payload = @{@"iss":_teamid,@"iat":@(unixtime),@"exp":@(exp)};
+///test
     payload = @{@"iss":@"XUUYEB97Z2",@"iat":@(1548136258),@"exp":@(1548139858)};
     NSLog(@"payload = %@",payload);
     return [[self class]fk_jwtBase64UrlEncodeJson:payload];
@@ -104,6 +105,13 @@
 - (NSString *)fk_jwtDigestString
 {
     return [NSString stringWithFormat:@"%@.%@",[self fk_jwtHeaderString],[self fk_jwtPayloadString]];
+}
+
+- (NSString *)fk_jwtGenerateTokenWithP8File:(NSString *)filepath
+{
+    NSData *p8key = [NSData dataWithContentsOfFile:filepath];
+    NSString *content = [[NSString alloc]initWithData:p8key encoding:NSUTF8StringEncoding];
+    return [self fk_jwtGenerateTokenWithPrivateKey:content];
 }
 
 - (NSString *)fk_jwtGenerateTokenWithPrivateKey:(NSString *)privatekey
@@ -127,6 +135,22 @@
     return [self fk_jwtDigestString];
 #endif
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (SecKeyRef)checkCreatePrivateSecKey:(NSData *)privateKeyData password:(NSString *)password
 {
